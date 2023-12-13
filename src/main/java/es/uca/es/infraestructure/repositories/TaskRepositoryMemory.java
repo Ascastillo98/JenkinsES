@@ -53,6 +53,7 @@ public class TaskRepositoryMemory implements TaskRepository {
 
     @Override
     public void removeTask(Task task) {
+        if(!savedTasks.containsKey(task.getId())) throw new IllegalArgumentException("La tarea no está guardada");
         deletedTasks.put(task.getId(), task);
         tasks.remove(task.getId());
     }
